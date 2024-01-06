@@ -1,7 +1,6 @@
 #include "EngineGUI.h"
 #include "Windows.h"
-//#include "GameEngineDevice.h"
-//#include "GameEngineLevel.h"
+#include "EngineDevice.h"
 #include "EngineWindow.h"
 
 std::map<std::string, std::shared_ptr<EngineGUIWindow>> EngineGUI::AllWindow;
@@ -16,13 +15,7 @@ EngineGUI::EngineGUI()
 EngineGUI::~EngineGUI()
 {
 }
-//
-//IMGUI_IMPL_API LRESULT Test(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
-//{
-//    int a = 0;
-//
-//    return 0;
-//}
+
 
 bool EngineGUI::IsInit = false;
 
@@ -64,7 +57,7 @@ void EngineGUI::Initialize()
 
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(EngineWindow::GetHWnd());
-    //ImGui_ImplDX11_Init(GameEngineDevice::GetDevice(), GameEngineDevice::GetContext());
+    ImGui_ImplDX11_Init(EngineDevice::GetDevice(), EngineDevice::GetContext());
 
     // GameEngineWindow::SetUserMessageFunction(Test);
 
@@ -105,7 +98,7 @@ void EngineGUI::Initialize()
 void EngineGUI::Render(float _DeltaTime)
 {
     // Start the Dear ImGui frame
-    //ImGui_ImplDX11_NewFrame();
+    ImGui_ImplDX11_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
 
@@ -114,15 +107,7 @@ void EngineGUI::Render(float _DeltaTime)
     {
         std::shared_ptr<EngineGUIWindow> WindowPtr = WindowPair.second;
 
-        //if (false == WindowPtr->IsUpdate())
-        //{
-        //    continue;
-        //}
-
-        //EngineGUIWindow* Ptr = WindowPtr.get();
-
         WindowPtr->Begin();
-        //Ptr->Level = Level.get();
         WindowPtr->OnGUI(_DeltaTime);
         WindowPtr->End();
     }
@@ -130,9 +115,9 @@ void EngineGUI::Render(float _DeltaTime)
     // Rendering
     ImGui::Render();
 
-    ImGui::GetDrawData()
-    ImGui_ImplWin32_RenderDrawData(ImGui::GetDrawData());
-    //ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+    
     ImGuiIO& io = ImGui::GetIO();
 
     // Update and Render additional Platform Windows
@@ -151,7 +136,7 @@ void EngineGUI::Release()
         return;
     }
 
-    //ImGui_ImplDX11_Shutdown();
+    ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
 

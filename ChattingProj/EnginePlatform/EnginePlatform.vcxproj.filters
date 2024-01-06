@@ -26,6 +26,10 @@
     <ClInclude Include="imstb_textedit.h">
       <Filter>IMGUI</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDevice.h" />
+    <ClInclude Include="imgui_impl_dx11.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineWindow.cpp" />
@@ -46,6 +50,10 @@
       <Filter>IMGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_widgets.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDevice.cpp" />
+    <ClCompile Include="imgui_impl_dx11.cpp">
       <Filter>IMGUI</Filter>
     </ClCompile>
   </ItemGroup>

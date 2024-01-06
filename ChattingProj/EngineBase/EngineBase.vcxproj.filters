@@ -3,9 +3,11 @@
   <ItemGroup>
     <ClInclude Include="EngineMath.h" />
     <ClInclude Include="EngineTime.h" />
+    <ClInclude Include="EngineDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="EngineTime.cpp" />
+    <ClCompile Include="EngineDebug.cpp" />
   </ItemGroup>
 </Project>

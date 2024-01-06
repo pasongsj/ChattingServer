@@ -122,6 +122,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>..\;..\backends;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +139,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>..\;..\backends;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EngineDebug.h" />
     <ClInclude Include="EngineMath.h">
       <SubType>
       </SubType>
@@ -154,6 +157,7 @@
     <ClInclude Include="EngineTime.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EngineDebug.cpp" />
     <ClCompile Include="EngineMath.cpp">
       <SubType>
       </SubType>

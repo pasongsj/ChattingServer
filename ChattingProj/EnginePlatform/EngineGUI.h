@@ -1,14 +1,14 @@
 #pragma once
-//#include <GameEngineBase/GameEngineString.h>
 #include <memory>
-//#include "GameEngineObject.h"
 #include <map>
 #include "imgui.h"
 #include "imgui_impl_win32.h"
-//#include "imgui_impl_dx11.h"
+#include "imgui_impl_dx11.h"
 #include <string_view>
+#include <EngineBase/EngineDebug.h>
 
-class EngineGUIWindow : /*public GameEngineObject, */public std::enable_shared_from_this<EngineGUIWindow>
+
+class EngineGUIWindow :public std::enable_shared_from_this<EngineGUIWindow>
 {
 	friend class EngineGUI;
 
@@ -62,19 +62,16 @@ public:
 
 	static void Release();
 
-	//template<typename WindowType>
+	template<typename WindowType>
 	static std::shared_ptr<EngineGUIWindow> GUIWindowCreate(std::string_view _Name)
 	{
-		//std::string UpperString = GameEngineString::ToUpper(_Name);
-
 		if (AllWindow.end() != AllWindow.find(_Name.data()))
 		{
-			//MsgAssert("이런 이름을 가진 GUI윈도우는 이미 존재합니다." + std::string(_Name));
+			MsgAssert("이런 이름을 가진 GUI윈도우는 이미 존재합니다." + std::string(_Name));
 			return nullptr;
 		}
 
-		//std::shared_ptr<EngineGUIWindow> WindowPtr = std::make_shared<WindowType>();
-		std::shared_ptr<EngineGUIWindow> WindowPtr = std::make_shared<EngineGUIWindow>();
+		std::shared_ptr<EngineGUIWindow> WindowPtr = std::make_shared<WindowType>();
 		AllWindow[_Name.data()] = WindowPtr ;
 		WindowPtr->SetName(_Name);
 		WindowPtr->Start();
@@ -92,8 +89,6 @@ public:
 
 	static std::shared_ptr<EngineGUIWindow> FindGUIWindow(std::string_view _Name)
 	{
-		//std::string UpperString = GameEngineString::ToUpper(_Name);
-
 		std::map<std::string, std::shared_ptr<EngineGUIWindow>>::iterator FindIter = AllWindow.find(_Name.data());
 
 		if (AllWindow.end() == FindIter)

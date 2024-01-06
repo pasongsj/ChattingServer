@@ -1,9 +1,6 @@
 #include "EngineWindow.h"
-//#include <GameEngineBase/GameEngineThread.h>
-//#include <GameEnginePlatform/GameEngineImage.h>
-//#include "GameEngineInput.h"
+#include <EngineBase/EngineDebug.h>
 
-// LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM)
 
 std::function<LRESULT(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)> EngineWindow::UserMessageFunction;
 HWND EngineWindow::HWnd = nullptr;
@@ -11,8 +8,6 @@ HDC EngineWindow::WindowBackBufferHdc = nullptr;
 float4 EngineWindow::WindowSize = {800, 600};
 float4 EngineWindow::WindowPos = { 100, 100 };
 float4 EngineWindow::ScreenSize = { 800, 600 };
-//GameEngineImage* EngineWindow::BackBufferImage = nullptr;
-//GameEngineImage* EngineWindow::DoubleBufferImage = nullptr;
 bool EngineWindow::IsWindowUpdate = true;
 WNDCLASSEX EngineWindow::wcex;
 
@@ -79,7 +74,6 @@ void EngineWindow::WindowCreate(HINSTANCE _hInstance, std::string_view _TitleNam
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = _hInstance;
-    // 넣어주지 않으면 윈도우 기본Icon이 됩니다.
     wcex.hIcon = nullptr;//LoadIcon(_hInstance, MAKEINTRESOURCE(IDI_WINDOWSPROJECT1));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); // 흰색 
@@ -87,28 +81,21 @@ void EngineWindow::WindowCreate(HINSTANCE _hInstance, std::string_view _TitleNam
     wcex.lpszClassName = "EngineWindowDefault";
     wcex.hIconSm = nullptr;//LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
-    // 윈도우에게 이런 내용을 window클래스를 EngineWindowDefault라는 이름으로 등록해줘.
-    // 나중에 윈도우 만들때 쓸꺼냐.
+    // 윈도우에게 이런 내용을 window클래스를 EngineWindowDefault라는 이름으로 등록.
     if (0 == RegisterClassEx(&wcex))
     {
-        //MsgAssert("윈도우 클래스 등록에 실패했습니다.");
+        MsgAssert("윈도우 클래스 등록에 실패했습니다.");
         return;
     }
 
     // hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-
-    // 1000번 프로그램이 윈도우를 띄워달라고 요청했다.
-    // 윈도우는 다시 특정 숫자이라는 윈도우가 만들어졌다고 우리에게 알려주는데.
-    // 특정 숫자로 인식되는 우리의 윈도우에게 크기변경 떠라
-
-    // (WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX)
 
     HWnd = CreateWindow("EngineWindowDefault", _TitleName.data(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, _hInstance, nullptr);
 
     if (nullptr == HWnd)
     {
-        //MsgAssert("윈도우 클래스 생성에 실패했습니다.");
+        MsgAssert("윈도우 클래스 생성에 실패했습니다.");
         return;
     }
 
@@ -122,25 +109,9 @@ void EngineWindow::WindowCreate(HINSTANCE _hInstance, std::string_view _TitleNam
     SettingWindowSize(_Size);
     SettingWindowPos(_Pos);
 
-    // 크기 바꾸고 얻어온다.
-    //BackBufferImage = new GameEngineImage();
-    //BackBufferImage->ImageCreate(WindowBackBufferHdc);
-
-
     return;
 }
 
-void EngineWindow::DoubleBufferClear()
-{
-    //DoubleBufferImage->ImageClear();
-}
-
-void EngineWindow::DoubleBufferRender()
-{
-    //static GameEngineImage* BackBufferImage;
-    //static GameEngineImage* DoubleBufferImage;
-    //BackBufferImage->BitCopy(DoubleBufferImage, WindowSize.half(), WindowSize);
-}
 
 int EngineWindow::WindowLoop(
     std::function<void()> _Start,
@@ -176,7 +147,6 @@ int EngineWindow::WindowLoop(
         if (nullptr != _Loop)
         {
             _Loop();
-            //GameEngineInput::IsAnyKeyOff();
         }
     }
 
@@ -184,15 +154,6 @@ int EngineWindow::WindowLoop(
     {
         _End();
     }
-
-    //if (nullptr != BackBufferImage)
-    //{
-    //    delete DoubleBufferImage;
-    //    DoubleBufferImage = nullptr;
-
-    //    delete BackBufferImage;
-    //    BackBufferImage = nullptr;
-    //}
 
     return (int)msg.wParam;
 }
@@ -214,36 +175,18 @@ void EngineWindow::SettingWindowSize(float4 _Size)
     // 0을 넣어주면 기존의 크기를 유지한다.
     SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
 
-    // 완전히 똑같은 크기의 이미지입니다.
-
-    //if (nullptr != DoubleBufferImage)
-    //{
-    //    delete DoubleBufferImage;
-    //    DoubleBufferImage = nullptr;
-    //}
-
-    //DoubleBufferImage = new GameEngineImage();
-    //DoubleBufferImage->ImageCreate(ScreenSize);
 
 
 }
+
 void EngineWindow::SettingWindowPos(float4 _Pos)
 {
     WindowPos = _Pos;
     SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
 }
 
-//float4 EngineWindow::GetMousePosition()
-//{
-//    POINT MoniterPoint;
-//    LPPOINT PointPtr = &MoniterPoint;
-//    GetCursorPos(PointPtr);
-//    ScreenToClient(HWnd, PointPtr);
-//
-//    return { static_cast<float>(MoniterPoint.x),static_cast<float>(MoniterPoint.y) };
-//}
-
 void EngineWindow::Release()
 {
+    ::DestroyWindow(HWnd);
     ::UnregisterClassA(wcex.lpszClassName, wcex.hInstance);
 }

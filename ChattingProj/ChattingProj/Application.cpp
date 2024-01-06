@@ -18,6 +18,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		{ 100, 100 },
 		{ 1600,900 }
 	);
-	//ContentsGameCore::GetInst().CoreStart(hInstance);
 	return 1;
 }
