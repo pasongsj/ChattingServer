@@ -1,6 +1,6 @@
 #pragma once
 #include <chrono>
-#include <Windows.h>
+#include "EngineDebug.h"
 
 // Ό³Έν :
 class EngineTime

@@ -1,6 +1,7 @@
+#include "PrecompiledHeader.h"
 #include "EngineDevice.h"
 #include <EngineBase/EngineDebug.h>
-
+#include <EnginePlatform/EngineWindow.h>
 
 
 ID3D11Device* EngineDevice::Device = nullptr;

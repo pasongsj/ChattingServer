@@ -1,6 +1,4 @@
 #pragma once
-#include <EngineBase/EngineMath.h>
-#include <EnginePlatform/EngineWindow.h>
 #include <d3d11.h>
 
 // Ό³Έν :

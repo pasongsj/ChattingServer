@@ -2,11 +2,10 @@
 #include <map>
 #include <string>
 #include <memory>
-#include <Windows.h>
 #include <functional>
 #include <string_view>
 #include <typeinfo>
-
+#include <EnginePlatform/EngineWindow.h>
 #include <EngineBase/EngineMath.h>
 
 

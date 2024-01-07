@@ -30,6 +30,7 @@
     <ClInclude Include="imgui_impl_dx11.h">
       <Filter>IMGUI</Filter>
     </ClInclude>
+    <ClInclude Include="PrecompiledHeader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineWindow.cpp" />
@@ -56,5 +57,6 @@
     <ClCompile Include="imgui_impl_dx11.cpp">
       <Filter>IMGUI</Filter>
     </ClCompile>
+    <ClCompile Include="PrecompiledHeader.cpp" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
+#include "PrecompiledHeader.h"
 #include "EngineGUI.h"
-#include "Windows.h"
 #include "EngineDevice.h"
 #include "EngineWindow.h"
 
@@ -44,8 +44,8 @@ void EngineGUI::Initialize()
     //io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports; // FIXME-DPI: Experimental.
 
     // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    //ImGui::StyleColorsLight();
+    //ImGui::StyleColorsDark();
+    ImGui::StyleColorsLight();
 
     // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
     ImGuiStyle& style = ImGui::GetStyle();

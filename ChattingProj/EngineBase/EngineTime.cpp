@@ -1,3 +1,4 @@
+#include "PrecompiledHeader.h"
 #include "EngineTime.h"
 
 EngineTime EngineTime::GlobalTime;

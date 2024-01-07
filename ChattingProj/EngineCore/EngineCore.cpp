@@ -1,7 +1,7 @@
+#include "PrecompiledHeader.h"
 #include "EngineCore.h"
 
 #include <EngineBase/EngineTime.h>
-#include <EngineBase/EngineDebug.h>
 
 #include <EnginePlatform/EngineGUI.h>
 #include <EnginePlatform/EngineWindow.h>

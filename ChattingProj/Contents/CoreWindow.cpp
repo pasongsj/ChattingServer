@@ -1,3 +1,4 @@
+#include "PrecompiledHeader.h"
 #include "CoreWindow.h"
 
 CoreWindow::CoreWindow()

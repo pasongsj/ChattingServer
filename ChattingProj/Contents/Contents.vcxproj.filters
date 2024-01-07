@@ -3,9 +3,13 @@
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="CoreWindow.h" />
+    <ClInclude Include="ServerWindow.h" />
+    <ClInclude Include="PrecompiledHeader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="CoreWindow.cpp" />
+    <ClCompile Include="ServerWindow.cpp" />
+    <ClCompile Include="PrecompiledHeader.cpp" />
   </ItemGroup>
 </Project>
