@@ -16,8 +16,20 @@ public:
 	NetObejctServer& operator=(NetObejctServer&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+
+	void Update(float DeltaTime) override;
 
 private:
+	static int ClientObjectID;
+
+	bool BindPort(SOCKADDR_IN Add);
+	bool Listen();
+	void Accept();
+
+	bool m_IsAccept = false;
+
+	std::map<int, SOCKET> Users;
 
 };
 

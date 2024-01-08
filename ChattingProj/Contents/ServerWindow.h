@@ -5,6 +5,9 @@
 class ServerWindow : public EngineGUIWindow
 {
 public:
+
+	static class NetObject* NetInst;
+
 	// constrcuter destructer
 	ServerWindow();
 	~ServerWindow();
@@ -31,15 +34,9 @@ private:
 	int BackLog = 512;
 	SOCKET MySocket;
 
-	std::map<int, SOCKET> Users;
-
-	void OpenServer();
-
-	bool Connect();
-
 	void Send(const char* Data, unsigned int _Size, int _IgnoreID);
 
-	void Accept();
+	//void Accept();
 
 
 };

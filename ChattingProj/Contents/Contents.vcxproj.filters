@@ -5,15 +5,34 @@
     <ClInclude Include="CoreWindow.h" />
     <ClInclude Include="ServerWindow.h" />
     <ClInclude Include="PrecompiledHeader.h" />
-    <ClInclude Include="NetObject.h" />
-    <ClInclude Include="NetObejctServer.h" />
+    <ClInclude Include="NetObejctServer.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="NetObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="NetObjectClient.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="CoreWindow.cpp" />
     <ClCompile Include="ServerWindow.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp" />
-    <ClCompile Include="NetObject.cpp" />
-    <ClCompile Include="NetObejctServer.cpp" />
+    <ClCompile Include="NetObejctServer.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="NetObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="NetObjectClient.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{50e6a1d2-8760-4c7f-b19a-d8c14036014d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
