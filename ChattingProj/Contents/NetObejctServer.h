@@ -20,6 +20,19 @@ protected:
 
 	void Update(float DeltaTime) override;
 
+	void Release() override
+	{
+		for (std::pair<int, SOCKET> _User : Users)
+		{
+			if (!(INVALID_SOCKET == _User.second))
+			{
+				closesocket(_User.second);
+			}
+		}
+		Users.clear();
+		NetObject::Release();
+	}
+
 private:
 	static int ClientObjectID;
 

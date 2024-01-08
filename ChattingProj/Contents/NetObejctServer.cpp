@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 #include "NetObejctServer.h"
+
 int NetObejctServer::ClientObjectID = 1;
 
 NetObejctServer::NetObejctServer() 
@@ -13,7 +14,7 @@ NetObejctServer::~NetObejctServer()
 void NetObejctServer::Start()
 {
     m_IsServer = true;
-
+    
     SOCKADDR_IN Add;
     if (false == CreateSocket(Add))
     {

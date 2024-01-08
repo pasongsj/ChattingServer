@@ -11,7 +11,7 @@ public:
 
 	// constrcuter destructer
 	NetObject();
-	~NetObject();
+	virtual ~NetObject();
 
 	// delete Function
 	NetObject(const NetObject& _Other) = delete;
@@ -33,6 +33,13 @@ public:
 protected:
 	virtual void Start() {};
 	virtual void Update(float DeltaTime) {};
+	virtual void Release()
+	{
+		if (!(INVALID_SOCKET == m_Socket))
+		{
+			closesocket(m_Socket);
+		}
+	}
 
 
 	bool m_IsServer;

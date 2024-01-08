@@ -43,6 +43,18 @@ void ServerWindow::OnGUI(float _DeltaTime)
     }
     else if (nullptr != NetInst)
     {
+		ImGui::InputText("##TestMessage", &InputBlank[0], InputBlank.size());
+        if(false == NetInst->GetIsServer()) // client
+        {
+            ImGui::SameLine();
+            if (ImGui::Button("Send"))
+            {
+            }
+        }
+        else
+        {
+            // 변경사항 적용
+        }
         NetInst->Update(_DeltaTime);
     }
 
@@ -50,18 +62,11 @@ void ServerWindow::OnGUI(float _DeltaTime)
 
 void ServerWindow::Release()
 {
-    //for (std::pair<int, SOCKET> User : Users)
-    //{
-    //    closesocket(User.second);
-    //}
-    //if (nullptr != NetInst)
-    //{
-    //    NetInst->Release();
-    //}
-    if (!(INVALID_SOCKET == MySocket))
+    if (nullptr != NetInst)
     {
-		closesocket(MySocket);
+        NetInst->Release();
+        delete NetInst;
+        NetInst = nullptr;
     }
 
-    
 }

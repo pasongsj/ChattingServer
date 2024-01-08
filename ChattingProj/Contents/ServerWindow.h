@@ -25,14 +25,14 @@ protected:
 
 private:
 	static int UserID;
-
+	std::string InputBlank = "aasdf                              ";
 
 	bool SelectAccess = false;
 	bool IsServer;
 	std::string IP = "127.0.0.1";
 	int Port = 30000;
 	int BackLog = 512;
-	SOCKET MySocket;
+	//SOCKET MySocket;
 
 	void Send(const char* Data, unsigned int _Size, int _IgnoreID);
 
