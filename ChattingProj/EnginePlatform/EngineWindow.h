@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include <Windows.h>
-#include <functional>
 #include <EngineBase/EngineMath.h>
 #include <string_view>
+#include <functional>
 
 
 // Ό³Έν :
@@ -14,7 +14,7 @@ class EngineWindow
 	static std::function<LRESULT(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)> UserMessageFunction;
 
 public:
-	static void SetUserMessageFunction(std::function<LRESULT(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)> _UserMessageFunction)
+	inline static void SetUserMessageFunction(std::function<LRESULT(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)> _UserMessageFunction)
 	{
 		UserMessageFunction = _UserMessageFunction;
 	}
@@ -24,22 +24,22 @@ public:
 	static void SettingWindowSize(float4 _Size);
 	static void SettingWindowPos(float4 _Pos);
 
-	static float4 GetScreenSize()
+	inline static float4 GetScreenSize()
 	{
 		return ScreenSize;
 	}
 
-	static HWND GetHWnd() 
+	inline static HWND GetHWnd()
 	{
 		return HWnd;
 	}
 
-	static HDC GetWindowBackBufferHdc()
+	inline static HDC GetWindowBackBufferHdc()
 	{
 		return WindowBackBufferHdc;
 	}
 
-	static void AppOff()
+	inline static void AppOff()
 	{
 		IsWindowUpdate = false;
 	}

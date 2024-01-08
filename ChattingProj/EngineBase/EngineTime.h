@@ -22,22 +22,22 @@ public:
 
 	float TimeCheck();
 
-	float GetDeltaTime()
+	inline float GetDeltaTime()
 	{
 		return floatDeltaTime;
 	}
 
-	float GetTimeScaleDeltaTime() 
+	inline float GetTimeScaleDeltaTime()
 	{
 		return floatDeltaTime * GlobalTimeScale;
 	}
 
-	void SetGlobalTimeScale(float _TimeScale) 
+	inline void SetGlobalTimeScale(float _TimeScale)
 	{
 		GlobalTimeScale = _TimeScale;
 	}
 
-	static std::string GetCurTime()
+	inline static std::string GetCurTime()
 	{
 		auto now = std::chrono::system_clock::now();
 		std::time_t end_time = std::chrono::system_clock::to_time_t(now);

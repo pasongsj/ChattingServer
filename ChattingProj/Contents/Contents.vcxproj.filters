@@ -5,11 +5,15 @@
     <ClInclude Include="CoreWindow.h" />
     <ClInclude Include="ServerWindow.h" />
     <ClInclude Include="PrecompiledHeader.h" />
+    <ClInclude Include="NetObject.h" />
+    <ClInclude Include="NetObejctServer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="CoreWindow.cpp" />
     <ClCompile Include="ServerWindow.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp" />
+    <ClCompile Include="NetObject.cpp" />
+    <ClCompile Include="NetObejctServer.cpp" />
   </ItemGroup>
 </Project>

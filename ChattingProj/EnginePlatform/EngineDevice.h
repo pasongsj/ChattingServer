@@ -21,28 +21,28 @@ public:
 
 	static void RenderEnd();
 
-	static ID3D11Device* GetDevice()
+	inline static ID3D11Device* GetDevice()
 	{
 		return Device;
 	}
 
-	static ID3D11DeviceContext* GetContext()
+	inline static ID3D11DeviceContext* GetContext()
 	{
 		return Context;
 	}
 
 
-	static ID3D11RenderTargetView* GetRTV() 
+	inline static ID3D11RenderTargetView* GetRTV()
 	{
 		return MainRTV;
 	}
 	
-	static ID3D11RenderTargetView** GetRTVRef()
+	inline static ID3D11RenderTargetView** GetRTVRef()
 	{
 		return &MainRTV;
 	}
 
-	static ID3D11Texture2D* GetBackBuffer()
+	inline static ID3D11Texture2D* GetBackBuffer()
 	{
 		return BackBuffer;
 	}

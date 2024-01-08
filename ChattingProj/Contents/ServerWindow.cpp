@@ -1,14 +1,8 @@
 #include "PrecompiledHeader.h"
 #include "ServerWindow.h"
-//#include <WS2tcpip.h> // inet_pton 함수를 사용하기 위한 헤더
-//#include <WinSock2.h> // window.h보다 무조건 위쪽에 있어야 한다.
 
-//#ifndef _WINSOCK2API_
-//#include <WS2tcpip.h>
-//#include <WINSOCK2.H>
-//#include <windows.h>
-//#endif
-#pragma comment (lib, "ws2_32") // <= 윈도우 서버 사용을 위한 라이브러리
+
+int ServerWindow::UserID = 1;
 
 ServerWindow::ServerWindow()
 {
@@ -30,6 +24,7 @@ void ServerWindow::OnGUI(float _DeltaTime)
         {
             OpenServer();
             SelectAccess = true;
+            IsServer = true;
         }
 
         if (ImGui::Button("Access Client"))
@@ -40,12 +35,39 @@ void ServerWindow::OnGUI(float _DeltaTime)
     }
     else
     {
-        Accept();
+        if(true == IsServer)
+        {
+            Accept();
+        }
     }
 }
 
 void ServerWindow::Accept()
 {
+    int AddressLen = sizeof(SOCKADDR_IN);
+    while (true)
+    {
+        SOCKADDR_IN ClientAdd;
+
+        memset(&ClientAdd, 0, sizeof(ClientAdd));
+
+        SOCKET ClientSocket = accept(MySocket, (struct sockaddr*)&ClientAdd, &AddressLen);
+
+        if (SOCKET_ERROR == ClientSocket || INVALID_SOCKET == ClientSocket)
+        {
+            return;
+        }
+
+        if (true == Users.contains(UserID))
+        {
+            MsgAssert("이미 존재하는 유저가 또 존재할수는 없습니다 ID 오류 입니다.");
+            return;
+        }
+
+        Users[UserID++] = ClientSocket;
+        break;
+	}
+    int a = 0;
 
 }
 
@@ -55,7 +77,6 @@ bool ServerWindow::Connect()
     // 내 프로그램이 네트워크를 사용할래요.
     WSAData WsaData;
 
-    // 이 프로그램이 윈도우에게 서버를 사용하겠다고 알려주는 겁니다.
     int errorCode = WSAStartup(MAKEWORD(2, 2), &WsaData);
     if (SOCKET_ERROR == errorCode)
     {
@@ -76,7 +97,6 @@ bool ServerWindow::Connect()
     ClientAdd.sin_port = htons(Port);
 
     // 로컬호스트 ip 내컴퓨터에 내가 접속하겠다.
-    //std::string IP = _IP;
 
     if (SOCKET_ERROR == inet_pton(AF_INET, IP.c_str(), &ClientAdd.sin_addr))
     {
@@ -91,14 +111,12 @@ bool ServerWindow::Connect()
         MsgAssert("커넥트에 실패했습니다.");
         return false;
     }
-
-    //RecvThread.Start("Client Recv Thread", std::bind(&GameEngineNet::RecvThreadFunction, ClientSocket, this));
-
     return true;
 }
 //
 void ServerWindow::OpenServer()
 {
+    // 소켓 생성
     WSAData WsaData;
 
     int errorCode = WSAStartup(MAKEWORD(2, 2), &WsaData);
@@ -123,18 +141,18 @@ void ServerWindow::OpenServer()
         return;
     }
 
+    // 포트번호 바인딩
     if (SOCKET_ERROR == bind(MySocket, (const sockaddr*)&Add, sizeof(SOCKADDR_IN)))
     {
         return;
     }
 
-
+    // 수신대기
     if (SOCKET_ERROR == listen(MySocket, BackLog))
     {
         return;
     }
 
-    //AccpetThread.Start("AcceptFunction", std::bind(GameEngineNetServer::AcceptThread, AcceptSocket, this));
 
 }
 
@@ -165,4 +183,17 @@ void ServerWindow::Send(const char* Data, unsigned int _Size, int _IgnoreID)
     {
 		::send(MySocket, Data, _Size, 0);
     }*/
+}
+
+void ServerWindow::Release()
+{
+    for (std::pair<int, SOCKET> User : Users)
+    {
+        closesocket(User.second);
+    }
+    if (!(INVALID_SOCKET == MySocket))
+    {
+		closesocket(MySocket);
+    }
+    
 }

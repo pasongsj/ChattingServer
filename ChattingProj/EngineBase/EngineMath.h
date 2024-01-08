@@ -62,32 +62,32 @@ public:
 	{
 	}
 
-	int ix() const
+	inline int ix() const
 	{
 		return static_cast<int>(x);
 	}
 
-	int iy() const
+	inline int iy() const
 	{
 		return static_cast<int>(y);
 	}
 
-	int iz() const
+	inline int iz() const
 	{
 		return static_cast<int>(z);
 	}
 
-	int iw() const
+	inline int iw() const
 	{
 		return static_cast<int>(w);
 	}
 
-	bool operator ==(const float4& _Value) const
+	inline bool operator ==(const float4& _Value) const
 	{
 		return _Value.x == x && _Value.y == y && _Value.z == z;
 	}
 
-	float4 operator *(const float _Value) const
+	inline float4 operator *(const float _Value) const
 	{
 		float4 Return;
 		Return.x = x * _Value;
@@ -96,7 +96,7 @@ public:
 		return Return;
 	}
 
-	float4 operator *(const float4& _Value) const
+	inline float4 operator *(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x * _Value.x;
@@ -105,7 +105,7 @@ public:
 		return Return;
 	}
 
-	float4 operator +(const float4& _Value) const
+	inline float4 operator +(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x + _Value.x;
@@ -114,7 +114,7 @@ public:
 		return Return;
 	}
 
-	float4 operator -(const float4& _Value) const
+	inline float4 operator -(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x - _Value.x;
@@ -125,7 +125,7 @@ public:
 
 
 
-	float4 operator /(const float4& _Value) const
+	inline float4 operator /(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x / _Value.x;
@@ -135,7 +135,7 @@ public:
 	}
 
 
-	float4 operator /(const float _Value) const
+	inline float4 operator /(const float _Value) const
 	{
 		float4 Return;
 		Return.x = x / _Value;
@@ -144,43 +144,43 @@ public:
 		return Return;
 	}
 
-	float4 operator -() const
+	inline float4 operator -() const
 	{
 		return { -x, -y, -z, w };
 	}
 
-	float4& operator +=(const float4& _Other)
+	inline float4& operator +=(const float4& _Other)
 	{
 		*this = *this + _Other;
 		return *this;
 	}
 
-	float4& operator *=(const float _Value)
+	inline float4& operator *=(const float _Value)
 	{
 		*this = *this * _Value;
 		return *this;
 	}
 
-	float4& operator /=(const float _Value)
+	inline float4& operator /=(const float _Value)
 	{
 
 		*this = *this / _Value;
 		return *this;
 	}
 
-	float4& operator *=(const float4& _Other)
+	inline float4& operator *=(const float4& _Other)
 	{
 		*this = *this * _Other;
 		return *this;
 	}
 
-	float4& operator -=(const float4& _Other)
+	inline float4& operator -=(const float4& _Other)
 	{
 		*this = *this - _Other;
 		return *this;
 	}
 
-	float4& operator /=(const float4& _Other)
+	inline float4& operator /=(const float4& _Other)
 	{
 		*this = *this / _Other;
 		return *this;

@@ -16,17 +16,21 @@ public:
 	ServerWindow& operator=(ServerWindow&& _Other) noexcept = delete;
 
 protected:
-	virtual void Start() override;
-	virtual void OnGUI(float _DeltaTime) override;
+	void Start() override;
+	void OnGUI(float _DeltaTime) override;
+	void Release() override;
 
 private:
+	static int UserID;
+
+
 	bool SelectAccess = false;
 	bool IsServer;
 	std::string IP = "127.0.0.1";
 	int Port = 30000;
-
 	int BackLog = 512;
 	SOCKET MySocket;
+
 	std::map<int, SOCKET> Users;
 
 	void OpenServer();
@@ -36,6 +40,7 @@ private:
 	void Send(const char* Data, unsigned int _Size, int _IgnoreID);
 
 	void Accept();
+
 
 };
 

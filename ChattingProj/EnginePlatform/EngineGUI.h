@@ -1,34 +1,34 @@
 #pragma once
 #include <memory>
 #include <map>
-#include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx11.h"
 #include <string_view>
 #include <EngineBase/EngineDebug.h>
 
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 
 class EngineGUIWindow :public std::enable_shared_from_this<EngineGUIWindow>
 {
 	friend class EngineGUI;
 
 private:
-	void Begin()
+	inline void Begin()
 	{
 		std::string_view View = GetName();
 
 		ImGui::Begin(View.data());
 	}
-	void End()
+	inline void End()
 	{
 		ImGui::End();
 	}
-	std::string_view GetName() const
+	inline std::string_view GetName() const
 	{
 		return NameData;
 	}
 
-	void SetName(std::string_view _Name)
+	inline void SetName(std::string_view _Name)
 	{
 		NameData = _Name;
 	}
@@ -36,6 +36,7 @@ private:
 public:
 	virtual void Start() {}
 	virtual void OnGUI(float _DeltaTime) {};
+	virtual void Release() {};
 	std::string NameData;
 
 };
@@ -63,7 +64,7 @@ public:
 	static void Release();
 
 	template<typename WindowType>
-	static std::shared_ptr<EngineGUIWindow> GUIWindowCreate(std::string_view _Name)
+	inline static std::shared_ptr<EngineGUIWindow> GUIWindowCreate(std::string_view _Name)
 	{
 		if (AllWindow.end() != AllWindow.find(_Name.data()))
 		{
@@ -80,14 +81,14 @@ public:
 	}
 
 	template<typename ConvertType>
-	static std::shared_ptr<ConvertType> FindGUIWindowConvert(std::string_view _Name)
+	inline static std::shared_ptr<ConvertType> FindGUIWindowConvert(std::string_view _Name)
 	{
 		std::shared_ptr<EngineGUIWindow> Window = FindGUIWindow(_Name);
 
 		return std::dynamic_pointer_cast<ConvertType>(Window);
 	}
 
-	static std::shared_ptr<EngineGUIWindow> FindGUIWindow(std::string_view _Name)
+	inline static std::shared_ptr<EngineGUIWindow> FindGUIWindow(std::string_view _Name)
 	{
 		std::map<std::string, std::shared_ptr<EngineGUIWindow>>::iterator FindIter = AllWindow.find(_Name.data());
 

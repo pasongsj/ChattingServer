@@ -1,6 +1,5 @@
 #include "PrecompiledHeader.h"
 #include "EngineWindow.h"
-#include <EngineBase/EngineDebug.h>
 
 
 std::function<LRESULT(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)> EngineWindow::UserMessageFunction;

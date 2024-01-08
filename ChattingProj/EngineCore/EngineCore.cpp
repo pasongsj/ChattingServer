@@ -2,9 +2,7 @@
 #include "EngineCore.h"
 
 #include <EngineBase/EngineTime.h>
-
 #include <EnginePlatform/EngineGUI.h>
-#include <EnginePlatform/EngineWindow.h>
 #include <EnginePlatform/EngineDevice.h>
 
 

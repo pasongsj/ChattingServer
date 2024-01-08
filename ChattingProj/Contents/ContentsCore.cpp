@@ -1,4 +1,5 @@
 #include "PrecompiledHeader.h"
+
 #include "ContentsCore.h"
 #include <EnginePlatform/EngineGUI.h>
 #include "CoreWindow.h"

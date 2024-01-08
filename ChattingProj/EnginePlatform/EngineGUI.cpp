@@ -136,6 +136,13 @@ void EngineGUI::Release()
         return;
     }
 
+    for (const std::pair<std::string, std::shared_ptr<EngineGUIWindow>>& WindowPair : AllWindow)
+    {
+        std::shared_ptr<EngineGUIWindow> WindowPtr = WindowPair.second;
+
+        WindowPtr->Release();
+    }
+
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();

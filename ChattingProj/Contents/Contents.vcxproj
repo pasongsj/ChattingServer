@@ -158,6 +158,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="NetObejctServer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NetObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PrecompiledHeader.h" />
     <ClInclude Include="ServerWindow.h">
       <SubType>
@@ -167,6 +175,14 @@
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="CoreWindow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NetObejctServer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NetObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
