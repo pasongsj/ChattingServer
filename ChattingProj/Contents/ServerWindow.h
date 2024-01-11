@@ -25,8 +25,10 @@ protected:
 
 private:
 	static int UserID;
-	std::string InputBlank = "aasdf                              ";
+	//std::string InputBlank = std::string(81,' ');
+	char InputBlank[1024] = { 0 };
 
+	char RevData[1024] = { 0 };
 	bool SelectAccess = false;
 	bool IsServer;
 	std::string IP = "127.0.0.1";

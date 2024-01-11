@@ -42,7 +42,7 @@ private:
 
 	bool m_IsAccept = false;
 
-	std::map<int, SOCKET> Users;
+
 
 };
 

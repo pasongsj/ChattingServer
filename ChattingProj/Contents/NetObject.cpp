@@ -39,3 +39,38 @@ bool NetObject::CreateSocket(SOCKADDR_IN& Add)
     }
     return true;
 }
+
+
+void NetObject::Send(const char* Data, unsigned int _Size/*, int _IgnoreID*/)
+{
+    ::send(m_Socket, Data, _Size, 0 /*, _IgnoreID*/);
+}
+
+bool NetObject::Read(char* data)
+{
+    //char Data[1024] = { 0 };
+
+    unsigned int PacketType = -1;
+    unsigned int PacketSize = -1;
+    while (true)
+    {
+        int Result = recv(Client, data, 1024, 0);
+        if (Result == 0)
+        {
+            return false;
+        }
+        // 立加 谗辫
+        if (-1 == Result)
+        {
+            return false;
+        }
+
+        // 立加 谗辫
+        if (SOCKET_ERROR == Client || INVALID_SOCKET == Client)
+        {
+            return false;
+        }
+        
+        return true;;
+    }
+}

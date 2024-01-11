@@ -3,6 +3,7 @@
 #include "NetObject.h"
 #include "NetObejctServer.h"
 #include "NetObjectClient.h"
+#define _CRT_SECURE_NO_WARNINGS
 
 int ServerWindow::UserID = 1;
 NetObject* ServerWindow::NetInst = nullptr;
@@ -28,8 +29,9 @@ void ServerWindow::OnGUI(float _DeltaTime)
             NetInst =  new NetObejctServer();
             NetInst->Setting(IP, Port);
             NetInst->Start();
-            SelectAccess = true;
             IsServer = true;
+
+            SelectAccess = true;
         }
 
         if (ImGui::Button("Access Client"))
@@ -43,19 +45,25 @@ void ServerWindow::OnGUI(float _DeltaTime)
     }
     else if (nullptr != NetInst)
     {
-		ImGui::InputText("##TestMessage", &InputBlank[0], InputBlank.size());
         if(false == NetInst->GetIsServer()) // client
         {
+			ImGui::InputText("##TestMessage", &InputBlank[0], 1024);
             ImGui::SameLine();
             if (ImGui::Button("Send"))
             {
+                NetInst->Send(reinterpret_cast<char*> (&InputBlank), 1024);
             }
         }
         else
         {
+			NetInst->Update(_DeltaTime);
+            if (true == NetInst->Read(RevData))
+            {
+                memcpy_s(InputBlank,1024, &RevData[0], 1024);
+            }
+            ImGui::Text("##RevMessage %s", InputBlank);
             // 변경사항 적용
         }
-        NetInst->Update(_DeltaTime);
     }
 
 }

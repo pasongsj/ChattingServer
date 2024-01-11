@@ -16,7 +16,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		ContentsCore::ContentsStart,
 		ContentsCore::ContentsEnd,
 		{ 100, 100 },
-		{ 1600,900 }
+		{ 600,900 }
 	);
 	return 1;
 }

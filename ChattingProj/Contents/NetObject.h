@@ -43,16 +43,19 @@ protected:
 
 
 	bool m_IsServer;
-
 	std::string IP;
 	int Port;
 	SOCKET m_Socket;
-
 	int BackLog;
 
 	bool CreateSocket(SOCKADDR_IN& Add);
 
-	void Send(const char* Data, unsigned int _Size, int _IgnoreID);
+	void Send(const char* Data, unsigned int _Size/*, int _IgnoreID*/);
+
+	bool Read(char* data);
+
+	std::map<int, SOCKET> Users;
+	SOCKET Client;
 
 private:
 

@@ -28,7 +28,7 @@ void NetObejctServer::Start()
     {
         return;
     }
-
+    Accept();
     int a = 0;
 }
 
@@ -73,18 +73,18 @@ void NetObejctServer::Accept()
         MsgAssert("이미 존재하는 유저가 또 존재할수는 없습니다 ID 오류 입니다.");
         return;
     }
-
+    Client = ClientSocket;
     Users[ClientObjectID++] = ClientSocket;
     m_IsAccept = true;
 }
 
 void NetObejctServer::Update(float DeltaTime)
 {
-    if (false == m_IsAccept)
-    {
-		Accept();
-        return;
-    }
+    //for (const std::pair<int, SOCKET>& _Cli : Users)
+    //{
+    //   Read(_Cli.second,
+    //}
+
     int a = 0;
 
 }
