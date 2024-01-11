@@ -47,6 +47,7 @@ void ServerWindow::OnGUI(float _DeltaTime)
     {
         if(false == NetInst->GetIsServer()) // client
         {
+            ImGui::Text("This is Client");
 			ImGui::InputText("##TestMessage", &InputBlank[0], 1024);
             ImGui::SameLine();
             if (ImGui::Button("Send"))
@@ -54,9 +55,10 @@ void ServerWindow::OnGUI(float _DeltaTime)
                 NetInst->Send(reinterpret_cast<char*> (&InputBlank), 1024);
             }
         }
-        else
+        else // server
         {
-			NetInst->Update(_DeltaTime);
+            ImGui::Text("This is Server");
+            NetInst->Update(_DeltaTime);
             if (true == NetInst->Read(RevData))
             {
                 memcpy_s(InputBlank,1024, &RevData[0], 1024);

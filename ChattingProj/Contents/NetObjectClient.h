@@ -1,6 +1,7 @@
 #pragma once
 #include "NetObject.h"
-// 설명 :
+
+// 설명 : 클라이언트 오브젝트
 class NetObjectClient : public NetObject
 {
 public:

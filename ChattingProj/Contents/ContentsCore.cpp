@@ -19,7 +19,7 @@ void ContentsCore::ContentsStart()
 {
 
 #ifdef _DEBUG
-	EngineGUI::GUIWindowCreate<CoreWindow>("CoreWindow");
+	//EngineGUI::GUIWindowCreate<CoreWindow>("CoreWindow");
 #endif
 	EngineGUI::GUIWindowCreate<ServerWindow>("ServerWindow");
 

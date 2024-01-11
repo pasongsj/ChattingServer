@@ -28,8 +28,8 @@ void NetObejctServer::Start()
     {
         return;
     }
+    
     Accept();
-    int a = 0;
 }
 
 

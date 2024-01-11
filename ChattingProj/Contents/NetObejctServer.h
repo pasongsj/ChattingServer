@@ -1,7 +1,7 @@
 #pragma once
 #include "NetObject.h"
 
-// 설명 :
+// 설명 : 서버 오브젝트
 class NetObejctServer : public NetObject
 {
 public:
