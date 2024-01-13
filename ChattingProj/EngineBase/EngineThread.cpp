@@ -28,6 +28,7 @@ void EngineThread::Initialize(/*const std::string& _ThreadName, */int _ThreadCou
 		RunningThreadCount = ThreadCount = Info.dwNumberOfProcessors;
 	}
 
+	// ½j ¿¬´Ù
 	IOCPHandle = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, ThreadCount);
 	if (nullptr == IOCPHandle)
 	{
