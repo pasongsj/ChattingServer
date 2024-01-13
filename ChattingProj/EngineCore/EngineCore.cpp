@@ -8,6 +8,7 @@
 
 
 float EngineCore::UpdateTime = 0.f;
+TaskQueue EngineCore::ThreadTask;
 
 
 
@@ -33,6 +34,9 @@ void EngineCore::EngineStart(std::function<void()> _ContentsStart)
 	EngineGUI::Initialize();
 
 	_ContentsStart();
+
+	ThreadTask.Initialize("ThreadTaskQueue");
+
 }
 
 void EngineCore::EngineUpdate() 
@@ -81,6 +85,8 @@ void EngineCore::EngineEnd(std::function<void()> _ContentsEnd)
 	}
 
 	_ContentsEnd();
+	EngineThread::ThreadEnd();
+
 	EngineGUI::Release();
 	Release();
 	

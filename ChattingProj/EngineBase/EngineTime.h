@@ -2,7 +2,7 @@
 #include <chrono>
 #include "EngineDebug.h"
 
-// 설명 :
+// 설명 : 현재 시간, 프레임 타임을 얻기위한 클래스
 class EngineTime
 {
 public:

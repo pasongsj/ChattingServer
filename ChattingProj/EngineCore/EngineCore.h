@@ -8,6 +8,7 @@
 
 #include <EnginePlatform/EngineWindow.h>
 #include <EngineBase/EngineMath.h>
+#include <EngineBase/TaskQueue.h>
 
 
 
@@ -29,6 +30,7 @@ public:
 	EngineCore& operator=(EngineCore&& _Other) noexcept = delete;
 
 	static void Start(HINSTANCE _instance, std::function<void()> _Start, std::function<void()> _End, float4 _Pos = {0, 0}, float4 _Size = { 1280, 720 });
+	static class TaskQueue ThreadTask;
 
 protected:
 

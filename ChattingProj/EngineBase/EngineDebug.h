@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string>
 
-// 설명 :
+// 설명 : 디버깅, 릭체크, warning메세지를 위한 클래스
 namespace EngineDebug
 {
 	void LeakCheck();

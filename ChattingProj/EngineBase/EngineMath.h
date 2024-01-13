@@ -1,6 +1,6 @@
 #pragma once
 
-// 설명 :
+// 설명 : 수학 단위, 연산과 관련 된 클래스
 class EngineMath final
 {
 

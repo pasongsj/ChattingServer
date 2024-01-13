@@ -5,13 +5,28 @@
     <ClInclude Include="EngineTime.h" />
     <ClInclude Include="EngineDebug.h" />
     <ClInclude Include="PrecompiledHeader.h" />
-    <ClInclude Include="EngineThread.h" />
+    <ClInclude Include="EngineThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskQueue.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="EngineDebug.cpp" />
     <ClCompile Include="PrecompiledHeader.cpp" />
-    <ClCompile Include="EngineThread.cpp" />
+    <ClCompile Include="EngineThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskQueue.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{a1e9e107-310a-44dd-90ef-fba2e056452f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
